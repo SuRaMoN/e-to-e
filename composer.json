@@ -1,0 +1,18 @@
+{
+	"autoload": {
+		"psr-0": { "EToE": "src" }
+	},
+    "name": "suramon/e-to-e",
+    "description": "Error to Exception converter - nothing more!",
+    "require": {
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "authors": [
+        {
+            "name": "SuRaMoN",
+            "email": "suramon@noemail.com"
+        }
+    ]
+}
