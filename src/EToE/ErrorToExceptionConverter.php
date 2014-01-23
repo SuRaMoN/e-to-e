@@ -10,6 +10,7 @@ use EToE\Exception\UndefinedConstantException;
 use EToE\Exception\UndefinedIndexException;
 use EToE\Exception\UndefinedPropertyException;
 use EToE\Exception\UndefinedVariableException;
+use EToE\Exception\UnexpectedTypeException;
 use EToE\StringUtil;
 
 
@@ -42,6 +43,9 @@ class ErrorToExceptionConverter
 
 			case StringUtil::startsWith($error->getErrorMessage(), 'Use of undefined constant '):
 				return new UndefinedConstantException($error);
+
+			case preg_match('/Argument [0-9]+ passed to .* must be an instance of/', $error->getErrorMessage()) > 0:
+				return new UnexpectedTypeException($error);
 		}
 		return new ErrorException($error);
 	}
