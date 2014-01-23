@@ -6,6 +6,7 @@ use EToE\Exception\DivisionByZeroException;
 use EToE\Exception\ErrorException;
 use EToE\Exception\IOException\FileSystemException\FileAlreadyExistsException;
 use EToE\Exception\IOException\FileSystemException\FileNotFoundException;
+use EToE\Exception\UndefinedConstantException;
 use EToE\Exception\UndefinedIndexException;
 use EToE\Exception\UndefinedPropertyException;
 use EToE\Exception\UndefinedVariableException;
@@ -38,6 +39,9 @@ class ErrorToExceptionConverter
 
 			case $error->getErrorMessage() == 'Division by zero':
 				return new DivisionByZeroException($error);
+
+			case StringUtil::startsWith($error->getErrorMessage(), 'Use of undefined constant '):
+				return new UndefinedConstantException($error);
 		}
 		return new ErrorException($error);
 	}

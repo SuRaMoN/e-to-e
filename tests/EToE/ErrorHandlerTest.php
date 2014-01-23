@@ -78,5 +78,15 @@ class ErrorHandlerTest extends PHPUnit_Framework_TestCase
 		ErrorHandler::register();
 		1/0;
 	}
+
+	/**
+	 * @test
+	 * @expectedException EToE\Exception\UndefinedConstantException
+	 */
+	public function testThrows()
+	{
+		ErrorHandler::register();
+		a;
+	}
 }
 
