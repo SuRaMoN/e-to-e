@@ -44,7 +44,7 @@ class ErrorToExceptionConverter
 			case StringUtil::startsWith($error->getErrorMessage(), 'Use of undefined constant '):
 				return new UndefinedConstantException($error);
 
-			case preg_match('/Argument [0-9]+ passed to .* must be an instance of/', $error->getErrorMessage()) > 0:
+			case preg_match('/Argument [0-9]+ passed to .* must ((be an instance of)|implement)/', $error->getErrorMessage()) > 0:
 				return new UnexpectedTypeException($error);
 		}
 		return new ErrorException($error);
